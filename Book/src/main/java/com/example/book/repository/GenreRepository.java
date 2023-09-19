@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Long> {
-
-
+    Genre findByName(String genreName);
+//Find Genre entity by name and takes a genreName as input and
+// returns the corresponding "Genre" object if found, or null if not found.
 }
 //Repository is an interface tha allows us to an perform a CRUD operation (Create, Update, and Delete) for Genre Objects
 //It extends the JpaRepository interface, specifying that it works with the "Genre" entity and uses Long as the type for the primary key.
