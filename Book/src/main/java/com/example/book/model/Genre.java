@@ -28,7 +28,14 @@ public class Genre {
 // Using LazyCollectionOption.FALSE ensures that the genreList is eagerly loaded when retrieving a genre object.
     @OneToMany(mappedBy = "genre", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Genre> genreList;
+    private List<Genre> genreList; //private list named genreList to store multiple genre objects, typically representing the genres associated with something (e.g., a book or a user).
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")//(genre-user relationship)name of foreign key in 'genre' table referencing the primary key of the users table
+    @JsonIgnore
+    private User user; // Genre has a Many-to-One relationship with another entity('User')
+
+//this annotation specifies how the foreign key relationship should be mapped in the database. It tells JPA that the user field in the Genre entity is linked to a column named user_id in the underlying database table
 
 
     public Genre() {
