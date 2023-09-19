@@ -70,6 +70,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public List<Genre> getGenreList() {
+        return genreList;
+    }
+
+    public void setGenreList(List<Genre> genreList) {
+        this.genreList = genreList;
+    }
+
+
     @Override //overrides the default behavior defined in the Object class.
     public String toString() {
         return "Genre{" +
