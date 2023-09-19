@@ -73,12 +73,23 @@ public class Genre {
         return bookList;
     }
 
-    public void setBook.List(List<Book> bookList) {
+    public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
-    //getter and setter to define one to many bw/ an entity and booklist
+
+    //getter and setter to define one to many bw/ an entity and bookList
     //this method helps access and manage this list of books.
 
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    //In summary, these getter and setter methods provide controlled access to the user property,
+    // allowing us to both retrieve and modify the associated User object within an instance of the class.
+    //These methods provide a way to modify the User association without requiring it to be provided during the initial construction of a Genre object.
 
     @Override //overrides the default behavior defined in the Object class.
     public String toString() {
