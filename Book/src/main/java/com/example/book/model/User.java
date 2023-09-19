@@ -11,8 +11,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
-    private String name;
-    @Column
     private String userName;
     @Column(unique = true)
     private String emailAddress;
@@ -30,14 +28,6 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getUserName() {
@@ -62,5 +52,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override //overrides the default behavior defined in the Object class.
+    public String toString() {
+        return "Genre{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
