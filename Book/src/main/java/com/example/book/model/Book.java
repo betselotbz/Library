@@ -1,4 +1,7 @@
 package com.example.book.model;
+import com.example.book.model.Genre;
+import com.example.book.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -17,6 +20,14 @@ public class Book {
     private Long pages;
     @Column
     private boolean available;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+// Establishes a many-to-one relationship with the "Genre" entity
+// using the "genre_id" column as a foreign key.
+
 
     public Book() {
         //default constructor
