@@ -85,6 +85,23 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+//parameterized
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+//non parameterized
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override //overrides the default behavior defined in the Object class.
     public String toString() {
         return "Recipe{" +
