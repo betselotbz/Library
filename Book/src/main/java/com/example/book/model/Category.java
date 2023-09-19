@@ -15,6 +15,13 @@ public class Category {
     @Column
     private String description;
 
-
+    @Override //overrides the default behavior defined in the Object class.
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
 
