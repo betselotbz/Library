@@ -69,4 +69,14 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+    @Override //overrides the default behavior defined in the Object class.
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", pages=" + pages + '\'' +
+                ", available='" + available + '\'' +
+                '}';
+    }
 }
