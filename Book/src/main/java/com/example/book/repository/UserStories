@@ -1,0 +1,47 @@
+USER STORIES:
+
+**As a User, I want to:**
+
+1. **View Books:**
+
+    - **What I Want:** I want to be able to view a list of available books, their titles, authors, and descriptions.
+
+    - **Why:** I want to explore the catalog of books and learn more about the ones that interest me.
+
+2. **Search for Books:**
+
+    - **What I Want:** I want to search for books by title, author, or genre to quickly find specific books.
+
+    - **Why:** This helps me find books I'm looking for without scrolling through a long list.
+
+3. **See Book Details:**
+
+    - **What I Want:** I want to see detailed information about a specific book, including its author, genre, and a summary.
+
+    - **Why:** I want to learn more about a book before deciding to read it.
+
+4. **Manage My Reading List:**
+
+    - **What I Want:** I want to add books to my reading list, mark them as read or unread, and remove them from the list.
+
+    - **Why:** This helps me keep track of books I want to read or have already read.
+
+5. **Explore Genres:**
+
+    - **What I Want:** I want to see a list of genres and explore books within a specific genre.
+
+    - **Why:** This allows me to discover books within categories I'm interested in.
+
+6. **Register and Log In:**
+
+    - **What I Want:** I want to register for an account, log in securely, and maintain my account settings.
+
+    - **Why:** This ensures a personalized experience and access to features like managing my reading list.
+
+7. **Administer the System (Admin User):**
+
+    - **What I Want:** I want to add, update, and delete books, genres, and user accounts as an administrator.
+
+    - **Why:** This allows me to maintain the system and its content.
+
+These user stories represent typical user perspectives and their motivations for using the RESTful API. They can serve as a starting point for designing and prioritizing features in your project.
