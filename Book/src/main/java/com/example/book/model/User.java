@@ -1,8 +1,12 @@
 package com.example.book.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jdk.jfr.Category;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +21,15 @@ public class User {
     @Column
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Genre> genreList;
+// Represents a one-to-many relationship with "Genre" entities,
+// where this user entity acts as the owning side.
+
+
+
 
     public User() {
         //default constructor
