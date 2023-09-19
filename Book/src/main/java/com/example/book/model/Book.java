@@ -27,7 +27,11 @@ public class Book {
     private Genre genre;
 // Establishes a many-to-one relationship with the "Genre" entity
 // using the "genre_id" column as a foreign key.
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+// Defines a many-to-one relationship with the "User" entity using the "user_id" column as a foreign key.
 
     public Book() {
         //default constructor
