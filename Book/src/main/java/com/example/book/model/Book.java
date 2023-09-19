@@ -2,6 +2,7 @@ package com.example.book.model;
 import com.example.book.model.Genre;
 import com.example.book.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.jfr.Category;
 
 import javax.persistence.*;
 
@@ -37,7 +38,7 @@ public class Book {
         //default constructor
     }
 
-    public Book(Long id, String title, String author, Long pages, boolean available) {
+    public Book(Long id, String title, String author, Long pages, boolean available, Genre genre) {
         this.id = id;
         this.title = title;
         this.author = author;
