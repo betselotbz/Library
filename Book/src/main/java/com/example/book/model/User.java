@@ -77,7 +77,13 @@ public class User {
     public void setGenreList(List<Genre> genreList) {
         this.genreList = genreList;
     }
+    public List<Book> getBookList() {
+        return bookList;
+    }
 
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
 
     @Override //overrides the default behavior defined in the Object class.
     public String toString() {
