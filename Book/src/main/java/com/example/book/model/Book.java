@@ -6,5 +6,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "books")
 public class Book {
+    private Long id;
+    private String title;
 
 }
