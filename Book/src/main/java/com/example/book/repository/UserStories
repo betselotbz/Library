@@ -1,3 +1,4 @@
+
 USER STORIES:
 
 **As a User, I want to:**
@@ -44,4 +45,3 @@ USER STORIES:
 
     - **Why:** This allows me to maintain the system and its content.
 
-These user stories represent typical user perspectives and their motivations for using the RESTful API. They can serve as a starting point for designing and prioritizing features in your project.
