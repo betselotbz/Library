@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "books")
 public class Book {
+
 }
