@@ -28,7 +28,11 @@ public class User {
 // Represents a one-to-many relationship with "Genre" entities,
 // where this user entity acts as the owning side.
 
-
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Book> bookList;
+// Represents a one-to-many relationship with "Book" entities,
+// where this user entity acts as the owning side.
 
 
     public User() {
