@@ -28,7 +28,7 @@ public class Genre {
 // Using LazyCollectionOption.FALSE ensures that the genreList is eagerly loaded when retrieving a genre object.
     @OneToMany(mappedBy = "genre", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Genre> genreList; //private list named genreList to store multiple genre objects, typically representing the genres associated with something (e.g., a book or a user).
+    private List<Book> bookList; //private list named genreList to store multiple genre objects, typically representing the genres associated with something (e.g., a book or a user).
 
     @ManyToOne
     @JoinColumn(name = "user_id")//(genre-user relationship)name of foreign key in 'genre' table referencing the primary key of the users table
@@ -69,6 +69,15 @@ public class Genre {
     public void setDescription(String description) {
         this.description = description;
     }
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBook.List(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+    //getter and setter to define one to many bw/ an entity and booklist
+    //this method helps access and manage this list of books.
 
 
     @Override //overrides the default behavior defined in the Object class.
