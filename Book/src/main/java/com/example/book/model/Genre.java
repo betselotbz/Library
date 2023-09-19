@@ -1,6 +1,12 @@
 package com.example.book.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 @Table(name = "genres")
@@ -14,6 +20,16 @@ public class Genre {
     private String name;
     @Column
     private String description;
+
+    // This field represents a list of related genres for the current genre.
+// It establishes a one-to-many relationship where one genre can have multiple sub-genres.
+// The "mappedBy" attribute indicates that the relationship is managed by the "genre" field in the sub-genre entity.
+// Setting "orphanRemoval" to true ensures that if a sub-genre(book) is removed from this list, it will be removed from the database.
+// Using LazyCollectionOption.FALSE ensures that the genreList is eagerly loaded when retrieving a genre object.
+    @OneToMany(mappedBy = "genre", orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Genre> genreList;
+
 
     public Genre() {
         //default constructor
