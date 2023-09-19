@@ -8,5 +8,8 @@ import javax.persistence.Table;
 public class Book {
     private Long id;
     private String title;
+    private String Author;
+    private Long pages;
+    private boolean available;
 
 }
