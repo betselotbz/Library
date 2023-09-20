@@ -2,6 +2,7 @@ package com.example.book.service;
 
 import com.example.book.exception.InformationExistException;
 import com.example.book.exception.InformationNotFoundException;
+import com.example.book.model.Book;
 import com.example.book.model.Genre;
 import com.example.book.repository.BookRepository;
 import com.example.book.repository.GenreRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -85,6 +87,27 @@ public class GenreService {
         } else {
             // If the Genre doesn't exist, throw an exception.
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+        }
+    }
+    public Book createGenreBook(Long genreId, Book bookObject) {
+        try {
+            // Attempt to find the genre by its ID in the repository
+            Optional<Genre> categoryOptional = genreRepository.findById(genreId);
+
+            // Check if the genre was found
+            if (categoryOptional.isPresent()) {
+                // Set the genre of the book to the one found in the repository
+                bookObject.setGenre(categoryOptional.get());
+
+                // Save the book object in the repository and return the newly created book
+                return bookRepository.save(bookObject);
+            } else {
+                // Throw an exception if the genre with the specified ID is not found
+                throw new InformationNotFoundException("Category with ID " + genreId + " not found");
+            }
+        } catch (NoSuchElementException e) {
+            // Handle the case where the genre is not found
+            throw new InformationNotFoundException("Category with ID " + genreId + " not found");
         }
     }
 
