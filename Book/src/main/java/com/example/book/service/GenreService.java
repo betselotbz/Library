@@ -4,13 +4,15 @@ import com.example.book.exception.InformationExistException;
 import com.example.book.exception.InformationNotFoundException;
 import com.example.book.model.Book;
 import com.example.book.model.Genre;
+import com.example.book.model.User;
 import com.example.book.repository.BookRepository;
 import com.example.book.repository.GenreRepository;
+import com.example.book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -21,6 +23,7 @@ public class GenreService {
     private GenreRepository genreRepository;
 
     private BookRepository bookRepository;
+    private UserRepository userRepository;
     // These repositories are used to interact with the database for Genre and Book entities.
     //These repositories enable to retrieve, create, update, and delete records in the database for these entities.
 @Autowired
@@ -75,12 +78,13 @@ public class GenreService {
             throw new InformationNotFoundException("genre with id " + genreId + " not found");
         }
     }
-    public List<Genre> getGenres(Long userId) {
-        List<Genre> genraList = genreRepository.findByUserId(userId);
-        if (genraList.isEmpty()) {
-            throw new InformationNotFoundException("no genres found for user id " + userId);
+
+    public List<Genre> genres() {
+        List<Genre> genreList = genreRepository.findAll();
+        if (genreList.isEmpty()) {
+            throw new InformationNotFoundException("No categories found.");
         } else {
-            return genraList;
+            return genreList;
         }
     }
 
@@ -119,6 +123,15 @@ public class GenreService {
         } catch (NoSuchElementException e) {
             // Handle the case where the genre is not found
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+        }
+    }
+    public List<Genre> getGenres() {
+        try {
+            return genreRepository.findAll();
+
+        } catch (NoSuchElementException e) {
+            // Handle the case where the genre is not found
+            throw new InformationNotFoundException("Genre with ID " + " not found");
         }
     }
     public List<Book> getGenresBooks(Long genreId) {
@@ -205,4 +218,9 @@ public class GenreService {
     }
 
 
+
+
+    public Optional<Genre> getGenre(Long genreId) {
+        return null;
+    }
 }

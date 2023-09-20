@@ -1,6 +1,7 @@
 package com.example.book.model.request;
 
-public class LoginRequest {
+public class
+LoginRequest {
     private String emailAddress;
     private String password;
 

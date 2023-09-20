@@ -1,7 +1,6 @@
 package com.example.book.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jdk.jfr.Category;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -11,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+    @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

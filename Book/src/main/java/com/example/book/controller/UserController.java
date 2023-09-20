@@ -1,4 +1,4 @@
-package com.example.food.controller;
+package com.example.book.controller;
 
 import com.example.book.model.User;
 import com.example.book.model.request.LoginRequest;
@@ -25,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(path = "/register/") // http://localhost:9092/auth/users/register/
+    @PostMapping(path = "/register/") // http://localhost:9094/auth/users/register/
     public User createUser(@RequestBody User userObject) {
         return userService.createUser(userObject);
     }
