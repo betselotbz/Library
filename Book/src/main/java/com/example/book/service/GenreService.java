@@ -30,7 +30,7 @@ public class GenreService {
     /* assigning instances of 'GenreRepository'
      assigning instances of 'GenreRepository'
     These setter methods are used to inject (set) the GenreRepository and BookRepository instances into this service.
-    @Autowired helps Spring provide instances of CategoryRepository and RecipeRepository and sets them as dependencies for your class.*/
+    @Autowired helps Spring provide instances of GenreRepository and BookRepository and sets them as dependencies for your class.*/
 
     public Genre createGenre(Genre genreObject) {
         Genre genre = genreRepository.findByName(genreObject.getName());
@@ -55,7 +55,7 @@ public class GenreService {
 
             if (genreObject.getName().equals(existingGenre.getName())) {
                 System.out.println("Same");
-                throw new InformationExistException("The category name is already " + existingGenre.getName() + " and description is already " + existingGenre.getDescription());
+                throw new InformationExistException("The genre name is already " + existingGenre.getName() + " and description is already " + existingGenre.getDescription());
             } else {
                 // Update the existing genre
                 existingGenre.setName(genreObject.getName());
@@ -67,7 +67,24 @@ public class GenreService {
                 return existingGenre; // Return the updated genre
             }
         } else {
-            throw new InformationNotFoundException("Category with id " + genreId + " not found");
+            throw new InformationNotFoundException("genre with id " + genreId + " not found");
+        }
+    }
+   //ADD getGenres Method
+
+    public Optional<Genre> deleteGenre(Long genreId) {
+        // Retrieve a Genre with the given genreId from the repository.
+        Optional<Genre> genreOptional = genreRepository.findById(genreId);
+
+        if (genreOptional.isPresent()) {
+            // If the Genre exists, delete it from the repository.
+            genreRepository.deleteById(genreId);
+
+            // Return the deleted Genre wrapped in an Optional.
+            return genreOptional;
+        } else {
+            // If the Genre doesn't exist, throw an exception.
+            throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
 
