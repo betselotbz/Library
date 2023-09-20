@@ -4,8 +4,11 @@ import com.example.book.exception.InformationExistException;
 import com.example.book.model.User;
 import com.example.book.model.request.LoginRequest;
 import com.example.book.repository.UserRepository;
+import com.example.book.security.JWTUtils;
 import com.example.book.security.MyUserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,13 +20,24 @@ import java.util.Optional;
 //user registration
 @Service
 public class UserService {
+
+    // Dependency injection for UserRepository, PasswordEncoder, JWTUtils, and AuthenticationManager
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JWTUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
 
-    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder) {
+    // Constructor for UserService, injecting necessary dependencies
+    @Autowired
+    public UserService(UserRepository userRepository, @Lazy PasswordEncoder passwordEncoder,
+                       JWTUtils jwtUtils,
+                       @Lazy AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
+        this.authenticationManager = authenticationManager;
     }
+
 
     public User createUser(User userObject) {
         // Check if a user with the same email address already exists
