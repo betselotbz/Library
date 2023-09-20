@@ -32,7 +32,7 @@ public class GenreService {
     /* assigning instances of 'GenreRepository'
      assigning instances of 'GenreRepository'
     These setter methods are used to inject (set) the GenreRepository and BookRepository instances into this service.
-    @Autowired helps Spring provide instances of GenreRepository and BookRepository and sets them as dependencies for your class.*/
+    @Autowired helps Spring provide instances of GenreRepository and BookRepository and sets them as dependencies for the class.*/
 
     public Genre createGenre(Genre genreObject) {
         Genre genre = genreRepository.findByName(genreObject.getName());
@@ -92,24 +92,50 @@ public class GenreService {
     public Book createGenreBook(Long genreId, Book bookObject) {
         try {
             // Attempt to find the genre by its ID in the repository
-            Optional<Genre> categoryOptional = genreRepository.findById(genreId);
+            Optional<Genre> genreOptional = genreRepository.findById(genreId);
 
             // Check if the genre was found
-            if (categoryOptional.isPresent()) {
+            if (genreOptional.isPresent()) {
                 // Set the genre of the book to the one found in the repository
-                bookObject.setGenre(categoryOptional.get());
+                bookObject.setGenre(genreOptional.get());
 
                 // Save the book object in the repository and return the newly created book
                 return bookRepository.save(bookObject);
             } else {
                 // Throw an exception if the genre with the specified ID is not found
-                throw new InformationNotFoundException("Category with ID " + genreId + " not found");
+                throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
             }
         } catch (NoSuchElementException e) {
             // Handle the case where the genre is not found
-            throw new InformationNotFoundException("Category with ID " + genreId + " not found");
+            throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
+    public List<Book> getGenresBook(Long genreId) {
+        try {
+            // Attempt to find the genre by its ID in the repository
+            Optional<Genre> genreOptional = genreRepository.findById(genreId);
+
+            // Check if the genre was found
+            if (genreOptional.isPresent()) {
+                // Get the genre object
+                Genre genre = genreOptional.get();
+
+                // Retrieve the list of books associated with the genre
+                return genre.getBookList();
+            } else {
+                // Throw an exception if the genre with the specified ID is not found
+                throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+            }
+        } catch (NoSuchElementException e) {
+            // Handle the case where the genre is not found
+            throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+        }
+    }
+
+
+
+
+
 
 
 
