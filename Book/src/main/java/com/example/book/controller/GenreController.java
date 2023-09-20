@@ -4,7 +4,6 @@ import com.example.book.model.Book;
 import com.example.book.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.book.service.BookService;
 import com.example.book.model.Genre;
 
 import java.util.List;
