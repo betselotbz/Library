@@ -30,6 +30,10 @@ public class GenreController {
     public Genre createGenre(@RequestBody Genre genreObject) {
         return genreService.createGenre(genreObject);
     }
+    @PutMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
+    public Genre updateGenre(@PathVariable(value = "genreId") Long genreId, @RequestBody Genre genre) {
+        return genreService.updateGenre(genreId, genre);
+    }
 
 
 }
