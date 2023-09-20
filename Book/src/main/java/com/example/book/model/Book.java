@@ -20,7 +20,12 @@ public class Book {
     @Column
     private Long pages;
     @Column
+
     private boolean available;
+    @Column
+    private String name;
+    @Column
+    private String description;
 
     @JsonIgnore
     @ManyToOne
@@ -38,12 +43,14 @@ public class Book {
         //default constructor
     }
 
-    public Book(Long id, String title, String author, Long pages, boolean available, Genre genre) {
+    public Book(Long id, String title, String author, Long pages, boolean available, String name, String description, Genre genre) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.available = available;
+        this.name = name;
+        this.description = description;
     }
 
     public Long getId() {
@@ -85,7 +92,24 @@ public class Book {
     public void setAvailable(boolean available) {
         this.available = available;
     }
-//parameterized
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    //parameterized
     public Genre getGenre() {
         return genre;
     }
@@ -110,6 +134,8 @@ public class Book {
                 ", author='" + author + '\'' +
                 ", pages=" + pages +
                 ", available='" + available +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

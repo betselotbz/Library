@@ -9,6 +9,7 @@ import com.example.book.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -163,6 +164,9 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
+
+
+
 
 
 
