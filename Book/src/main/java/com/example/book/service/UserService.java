@@ -30,5 +30,9 @@ public class UserService {
             throw new InformationExistException("user with email address " + userObject.getEmailAddress() + " already exists");
         }
     }
+
+    public User findUserByEmailAddress(String emailAddress) {
+        return userRepository.findUserByEmailAddress(emailAddress);
+    }
 }
 

@@ -1,5 +1,6 @@
 package com.example.book.security;
 
+import com.example.book.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -7,6 +8,9 @@ import java.util.Collection;
 
 
 public class MyUserDetails implements UserDetails {
+    public MyUserDetails(User user) {
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
