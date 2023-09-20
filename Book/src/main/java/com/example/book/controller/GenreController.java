@@ -39,7 +39,7 @@ public class GenreController {
     public Optional<Genre> deleteGenre(@PathVariable(value = "genreId") Long genreId) {
         return genreService.deleteGenre(genreId);
     }
-    @GetMapping(path = "/genres/{genreId}/books") // http://localhost:9092/api/genres/1/books/
+    @GetMapping(path = "/genres/{genreId}/books") // http://localhost:9094/api/genres/1/books/
     public List<Book> getGenreBooks(@PathVariable(value = "genreId") Long genreId) {
         return genreService.getGenresBooks(genreId);
     }
@@ -50,6 +50,10 @@ public class GenreController {
     @PutMapping(path = "/genres/{genreId}/books/{bookId}")
     public Book updateGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
         return genreService.updateGenreBook(genreId, bookId, bookObject);
+    }
+    @DeleteMapping(path = "/genres/{genreId}/books/{bookId}")
+    public void deleteGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId) {
+        genreService.deleteGenreBook(genreId, bookId);
     }
 
 }
