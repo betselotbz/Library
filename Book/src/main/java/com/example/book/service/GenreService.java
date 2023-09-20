@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -74,7 +75,15 @@ public class GenreService {
             throw new InformationNotFoundException("genre with id " + genreId + " not found");
         }
     }
-   //ADD getGenres Method
+    public List<Genre> getGenres(Long userId) {
+        List<Genre> genraList = genreRepository.findByUserId(userId);
+        if (genraList.isEmpty()) {
+            throw new InformationNotFoundException("no genres found for user id " + userId);
+        } else {
+            return genraList;
+        }
+    }
+
 
     public Optional<Genre> deleteGenre(Long genreId) {
         // Retrieve a Genre with the given genreId from the repository.

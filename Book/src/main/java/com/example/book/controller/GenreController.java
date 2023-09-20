@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.book.service.BookService;
+import com.example.book.model.Genre;
+
+import java.util.List;
 
 @RestController//annotation indicates that this class will handle incoming HTTP requests and provide responses.
 @RequestMapping("/api")//http://localhost:9094/api
@@ -15,5 +19,8 @@ public class GenreController {
     public GenreController(GenreService genreService) {
         this.genreService = genreService;
     }
-
+    @GetMapping(path = "/categories/") // http://localhost:9092/api/categories/
+    public List<Genre> getGenres() {
+        return genreService.getGenres();
+    }
 }
