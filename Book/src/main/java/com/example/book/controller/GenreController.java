@@ -1,5 +1,6 @@
 package com.example.book.controller;
 
+import com.example.book.model.Book;
 import com.example.book.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class GenreController {
     public Optional<Genre> deleteGenre(@PathVariable(value = "genreId") Long genreId) {
         return genreService.deleteGenre(genreId);
     }
+
 
 
 }
