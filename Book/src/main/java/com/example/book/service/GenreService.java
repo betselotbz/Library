@@ -165,7 +165,23 @@ public class GenreService {
         }
     }
 
-
+    public Book updateGenreBook(Long genreId, Long bookId, Book bookObject) {
+        System.out.println("service calling updateGenreBook ==>");
+        Optional<Genre> genre = genreRepository.findById(genreId);
+        if (genre.isPresent()) {
+            if (bookObject.getName().equals(genre.get().getName())) {
+                // Handle the case where names are the same (if needed)
+            } else {
+                Genre updateGenre = genreRepository.findById(genreId).get();
+                updateGenre.setName(bookObject.getName());
+                updateGenre.setDescription(bookObject.getDescription());
+                return bookRepository.save(bookObject);
+            }
+        } else {
+            throw new InformationNotFoundException("Genre with id " + genreId + " not found");
+        }
+        return null;
+    }
 
 
 
