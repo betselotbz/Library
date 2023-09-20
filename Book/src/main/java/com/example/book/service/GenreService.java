@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GenreService {
@@ -110,7 +111,7 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
-    public List<Book> getGenresBook(Long genreId) {
+    public List<Book> getGenresBooks(Long genreId) {
         try {
             // Attempt to find the genre by its ID in the repository
             Optional<Genre> genreOptional = genreRepository.findById(genreId);
@@ -131,6 +132,103 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
+    public Book getGenreBook(Long genreId, Long bookId) {
+        // Attempt to find the genre by its ID in the repository
+        Optional<Genre> genreOptional = genreRepository.findById(genreId);
+
+        // Attempt to find the book by its ID in the repository
+        Optional<Book> bookOptional = bookRepository.findById(bookId);
+
+        if (genreOptional.isPresent()) {
+
+            if (bookOptional.isPresent()) {
+                // Filter the list of books associated with the genre by book ID
+                List<Book> book1 = genreOptional.get().getBookList().stream()
+                        .filter(book -> book.getId().equals(bookId))
+                        .collect(Collectors.toList());
+
+                if (book1.isEmpty()) {
+                    // Throw an exception if the specified book is not found within the genre
+                    throw new InformationNotFoundException("Book with ID " + bookId + " not found in genre with ID " + genreId);
+                }
+                // Return the found book
+                return book1.get(0);
+            } else {
+                // Throw an exception if the book with the specified ID is not found
+                throw new InformationNotFoundException("Book with ID " + bookId + " not found");
+            }
+
+        } else {
+            // Throw an exception if the genre with the specified ID is not found
+            throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+        }
+    }
+    public Book getGenreBook(Long genreId, Long bookId) {
+        // Log a message to indicate that the service is calling the getGenreBook method
+        System.out.println("service calling getGenreBook ==>");
+
+        // Attempt to find the genre by its ID in the repository
+        Optional<Genre> genreOptional = genreRepository.findById(genreId);
+
+        // Attempt to find the book by its ID in the repository
+        Optional<Book> bookOptional = bookRepository.findById(bookId);
+
+        if (genreOptional.isPresent()) {
+
+            if (bookOptional.isPresent()) {
+                // Filter the list of books associated with the genre by book ID
+                List<Book> book1 = genreOptional.get().getBookList().stream()
+                        .filter(book -> book.getId().equals(bookId))
+                        .collect(Collectors.toList());
+
+                if (book1.isEmpty()) {
+                    // Throw an exception if the specified book is not found within the genre
+                    throw new InformationNotFoundException("Book with ID " + bookId + " not found in genre with ID " + genreId);
+                }
+                // Return the found book
+                return book1.get(0);
+            } else {
+                // Throw an exception if the book with the specified ID is not found
+                throw new InformationNotFoundException("Book with ID " + bookId + " not found");
+            }
+
+        } else {
+            // Throw an exception if the genre with the specified ID is not found
+            throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
+        }
+    }
+    public Book getGenreBook(Long genreId, Long bookId) {
+        Optional<Genre> genreOptional = genreRepository.findById(genreId);
+        Optional<Book> bookOptional = bookRepository.findById(bookId);
+
+        if (genreOptional.isPresent()) {
+
+            if (bookOptional.isPresent()) {
+                // Filter the list of books associated with the genre by book ID
+                List<Book> book1 = genreOptional.get().getBookList().stream()
+                List<Book> book1 = genreOptional.get().getBookList().stream()
+                        .filter(book -> book.getId().equals(bookId))
+                        .collect(Collectors.toList());
+
+                if (book1.isEmpty()) {
+                    throw new InformationNotFoundException("Book with id " + bookId + " not found in genre with id " + genreId);
+                }
+                return book1.get(0);
+            } else {
+                throw new InformationNotFoundException("Book with id " + bookId + " not found");
+            }
+
+        } else {
+            throw new InformationNotFoundException("Genre with id " + genreId + " not found");
+        }
+    }
+
+
+
+
+
+
+
 
 
 
