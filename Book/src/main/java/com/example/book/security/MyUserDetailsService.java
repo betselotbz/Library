@@ -13,6 +13,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
