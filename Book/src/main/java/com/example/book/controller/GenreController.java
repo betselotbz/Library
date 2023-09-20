@@ -19,7 +19,7 @@ public class GenreController {
     public GenreController(GenreService genreService) {
         this.genreService = genreService;
     }
-    @GetMapping(path = "/categories/") // http://localhost:9092/api/categories/
+    @GetMapping(path = "/genres/") // http://localhost:9092/api/categories/
     public List<Genre> getGenres() {
         return genreService.getGenres();
     }
