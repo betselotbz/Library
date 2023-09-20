@@ -182,21 +182,18 @@ public class GenreService {
         }
         return null;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public Optional<Book> deleteGenreBook(Long genreId, Long bookId) {
+        Optional<Genre> genreOptional = genreRepository.findById(genreId);
+        try {
+            List<Book> book1 = genreOptional.get().getBookList().stream()
+                    .filter(book -> book.getId().equals(bookId))
+                    .collect(Collectors.toList());
+            bookRepository.deleteById(book1.get(0).getId());
+            return Optional.of(book1.get(0));
+        } catch (NoSuchElementException e) {
+            throw new InformationNotFoundException("Genre or book not found.");
+        }
+    }
 
 
 }
