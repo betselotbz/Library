@@ -2,10 +2,7 @@ package com.example.book.controller;
 
 import com.example.book.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.example.book.service.BookService;
 import com.example.book.model.Genre;
 
@@ -25,9 +22,13 @@ public class GenreController {
     public List<Genre> getGenres() {
         return genreService.getGenres();
     }
-    @GetMapping(path = "/genres/{genreId}") // http://localhost:9092/api/genres/1/
-    public Optional<Genre> getGenre(@PathVariable(value = "genreId") Long genreId) {
-        return genreService.getGenre(genreId);
+//    @GetMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
+//    public Optional<Genre> getGenre(@PathVariable(value = "genreId") Long genreId) {
+//        return genreService.getGenre(genreId);
+//
+    @PostMapping(path = "/genres/") // http://localhost:9094/api/genres/
+    public Genre createGenre(@RequestBody Genre genreObject) {
+        return genreService.createGenre(genreObject);
     }
 
 
