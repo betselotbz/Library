@@ -20,10 +20,11 @@ public class GenreController {
         this.genreService = genreService;
     }
     @GetMapping(path = "/genres/") // http://localhost:9094/api/genres/
-    public List<Genre> getGenres() {
-        return genreService.getGenres();
+    public List<Genre> getGenres(@RequestParam(name = "userId") Long userId) {
+        return genreService.getGenres(userId);
     }
-//    @GetMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
+
+    //    @GetMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
 //    public Optional<Genre> getGenre(@PathVariable(value = "genreId") Long genreId) {
 //        return genreService.getGenre(genreId);
 //
