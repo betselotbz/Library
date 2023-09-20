@@ -39,7 +39,10 @@ public class GenreController {
     public Optional<Genre> deleteGenre(@PathVariable(value = "genreId") Long genreId) {
         return genreService.deleteGenre(genreId);
     }
-
+    @GetMapping(path = "/genres/{genreId}/books") // http://localhost:9092/api/genres/1/books/
+    public List<Book> getGenreBooks(@PathVariable(value = "genreId") Long genreId) {
+        return genreService.getGenresBooks(genreId);
+    }
 
 
 }
