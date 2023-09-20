@@ -3,6 +3,7 @@ package com.example.book.controller;
 import com.example.book.model.User;
 import com.example.book.model.request.LoginRequest;
 
+import com.example.book.model.response.LoginResponse;
 import com.example.book.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,5 +29,14 @@ public class UserController {
     @PostMapping(path = "/register/") // http://localhost:9094/auth/users/register/
     public User createUser(@RequestBody User userObject) {
         return userService.createUser(userObject);
+    }
+    @PostMapping(path = "/login/") // http://localhost:9092/auth/users/login/
+    public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
+        Optional<String> jwtToken = userService.loginUser(loginRequest);
+        if (jwtToken.isPresent()) {
+            return ResponseEntity.ok(new LoginResponse(jwtToken.get()));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Authentication failed"));
+        }
     }
 }
