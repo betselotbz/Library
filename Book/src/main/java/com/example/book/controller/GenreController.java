@@ -4,7 +4,9 @@ import com.example.book.model.Book;
 import com.example.book.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.example.book.model.Genre;
+import java.lang.Long;
 
 
 import java.util.List;
@@ -21,48 +23,47 @@ public class GenreController {
         this.genreService = genreService;
     }
 
-
-    @GetMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
+    //retrieving a specific genre by its ID
+    @GetMapping(path = "/genres/{genreId}") // http://localhost:8081/api/genres/1/
     public Optional<Genre> getGenre(@PathVariable(value = "genreId") Long genreId) {
         return genreService.getGenre(genreId);
     }
-
-    @GetMapping(path = "/genres/") // http://localhost:9094/api/genres/
-    public List<Genre> getGenres() {
+    //retrieving a list of all genres
+    @GetMapping(path = "/genres/") // http://localhost:8081/api/genres/
+    public List<Genre> getAllGenres() {
         return genreService.getGenres();
     }
+    //Retrieving a list of books related with a specific genre(genreId)
+    @GetMapping(path = "/genres/{genreId}/books") // http://localhost:8081/api/genres/1/books/
+    public List<Book> getGenreBooks(@PathVariable(value = "genreId") Long genreId) {
+        return genreService.getGenresBooks(genreId);
+    }
+    //Creating a new Genre
+    @PostMapping(path = "/genres/") // http://localhost:8081/api/genres/
+    public Genre createGenre(@RequestBody Genre genreObject) {
+        return genreService.createGenre(genreObject);
+    }
+    //Creating a book within a specific genre(genreId)
+    @PostMapping(path = "/genres/{genreId}/books/") // http://localhost:8081/api/genres/1/books/
+    public Book createGenreBook(@PathVariable(value = "genreId") Long genreId, @RequestBody Book genreObject) {
+        return genreService.createGenreBook(genreId, genreObject);
+    }
 
-//    @GetMapping(path = "/genres/") // http://localhost:9094/api/genres/
-//    public List<Genre> getGenres(@RequestParam(name = "userId") Long userId) {
-//        return genreService.getGenres(userId);
-//    }
-//    @PostMapping(path = "/genres/") // http://localhost:9094/api/genres/
-//    public Genre createGenre(@RequestBody Genre genreObject) {
-//        return genreService.createGenre(genreObject);
-//    }
-//    @PutMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
-//    public Genre updateGenre(@PathVariable(value = "genreId") Long genreId, @RequestBody Genre genre) {
-//        return genreService.updateGenre(genreId, genre);
-//    }
-//    @DeleteMapping(path = "/genres/{genreId}") // http://localhost:9094/api/genres/1/
-//    public Optional<Genre> deleteGenre(@PathVariable(value = "genreId") Long genreId) {
-//        return genreService.deleteGenre(genreId);
-//    }
-//    @GetMapping(path = "/genres/{genreId}/books") // http://localhost:9094/api/genres/1/books/
-//    public List<Book> getGenreBooks(@PathVariable(value = "genreId") Long genreId) {
-//        return genreService.getGenresBooks(genreId);
-//    }
-//    @GetMapping(path = "/genres/{genreId}/books/{bookId}")
-//    public Book getGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId) {
-//        return genreService.getGenreBook(genreId, bookId);
-//    }
-//    @PutMapping(path = "/genres/{genreId}/books/{bookId}")
-//    public Book updateGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId, @RequestBody Book bookObject) {
-//        return genreService.updateGenreBook(genreId, bookId, bookObject);
-//    }
-//    @DeleteMapping(path = "/genres/{genreId}/books/{bookId}")
-//    public void deleteGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId) {
-//        genreService.deleteGenreBook(genreId, bookId);
-//    }
+
+    //Updating a specific genre
+    @PutMapping(path = "/genres/{genreId}") // http://localhost:8081/api/genres/1/
+    public Genre updateGenre(@PathVariable Long genreId, @RequestBody Genre genre) {
+        return genreService.updateGenre(genreId, genre);
+    }
+    //Deleting a specific genre
+    @DeleteMapping(path = "/genres/{genreId}") // http://localhost:8081/api/genres/1/
+    public Optional<Genre> deleteGenre(@PathVariable(value = "genreId") Long genreId) {
+        return genreService.deleteGenre(genreId);
+    }
+    //Deleting a specific book within a genre
+    @DeleteMapping(path = "/genres/{genreId}/books/{bookId}") //http://localhost:8081/api/genres/1/books/1/
+    public void deleteGenreBook(@PathVariable(value = "genreId") Long genreId, @PathVariable(value = "bookId") Long bookId) {
+        genreService.deleteGenreBook(genreId, bookId);
+    }
 
 }
