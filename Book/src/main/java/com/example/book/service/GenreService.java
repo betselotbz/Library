@@ -39,7 +39,13 @@ public class GenreService {
      assigning instances of 'GenreRepository'
     These setter methods are used to inject (set) the GenreRepository and BookRepository instances into this service.
     @Autowired helps Spring provide instances of GenreRepository and BookRepository and sets them as dependencies for the class.*/
-
+    /*
+     * Create a new genre.
+     *
+     * @param genreObject The genre object to be created
+     * @return The created genre
+     * @throws InformationExistException if a genre with the same name already exists
+     */
     public Genre createGenre(Genre genreObject) {
         Genre genre = genreRepository.findByName(genreObject.getName());
         if (genre != null) {
@@ -54,7 +60,12 @@ public class GenreService {
      If not, it creates and saves the new genre to the database */
 
 
-
+    /*
+     * Retrieve a list of all genres.
+     *
+     * @return List of genres
+     * @throws InformationNotFoundException if no genres are found
+     */
 
     public List<Genre> genres() {
         List<Genre> genreList = genreRepository.findAll();
@@ -64,7 +75,13 @@ public class GenreService {
             return genreList;
         }
     }
-
+    /*
+     * Delete a specific genre by its ID.
+     *
+     * @param genreId The ID of the genre to delete
+     * @return Optional containing the deleted genre, if found
+     * @throws InformationNotFoundException if the genre is not found
+     */
 
     public Optional<Genre> deleteGenre(Long genreId) {
         // Retrieve a Genre with the given genreId from the repository.
@@ -81,6 +98,14 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
+    /*
+     * Create a book within a specific genre.
+     *
+     * @param genreId    The ID of the genre to which the book belongs
+     * @param bookObject The book object to be created
+     * @return The created book
+     * @throws InformationNotFoundException if the genre with the specified ID is not found
+     */
     public Book createGenreBook(Long genreId, Book bookObject) {
         try {
             // Attempt to find the genre by its ID in the repository
@@ -111,6 +136,13 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + " not found");
         }
     }
+    /*
+     * Retrieve a list of books related to a specific genre.
+     *
+     * @param genreId The ID of the genre for which to retrieve related books
+     * @return List of related books
+     * @throws InformationNotFoundException if the genre with the specified ID is not found
+     */
     public List<Book> getGenresBooks(Long genreId) {
         try {
             // Attempt to find the genre by its ID in the repository
@@ -182,6 +214,16 @@ public class GenreService {
         return null;
     }
 
+    /*
+     * Update properties of an existing Genre object based on the provided genreId.
+     *
+     * @param genreId    The ID of the genre to update
+     * @param genreObject The updated genre object
+     * @return The updated genre
+     * @throws InformationExistException    if a genre with the same name already exists
+     * @throws InformationNotFoundException if the genre with the specified ID is not found
+     */
+
     public Genre updateGenre(@PathVariable(value = "genreId") Long genreId, @RequestBody Genre genreObject) {
         System.out.println("Calling updateGenre ==>");
         Optional<Genre> genre = genreRepository.findById(genreId);
@@ -200,7 +242,14 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with id " + genreId + " not found");
         }
     }
-
+    /*
+     * Delete a specific book within a genre.
+     *
+     * @param genreId The ID of the genre to which the book belongs
+     * @param bookId  The ID of the book to delete
+     * @return Optional containing the deleted book, if found
+     * @throws InformationNotFoundException if the genre or book is not found
+     */
     public Optional<Book> deleteGenreBook(Long genreId, Long bookId) {
         Optional<Genre> genreOptional = genreRepository.findById(genreId);
         try {
@@ -213,6 +262,12 @@ public class GenreService {
             throw new InformationNotFoundException("Genre or book not found.");
         }
     }
+    /*
+     * Retrieve a specific genre by its ID.
+     *
+     * @param genreId The ID of the genre to retrieve
+     * @return Optional containing the retrieved genre, if found
+     */
     public Optional<Genre> getGenre(Long genreId) {
         return null;
     }

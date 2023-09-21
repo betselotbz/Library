@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Logger;
-
+/*
+ * Custom JWT request filter for handling authentication based on JWT tokens.
+ */
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -34,7 +36,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     public void setJwtUtils(JWTUtils jwtUtils) {
         this.jwtUtils = jwtUtils;
     }
-
+    /*
+     * Parse JWT token from the request's Authorization header.
+     *
+     * @param request The HttpServletRequest object
+     * @return The JWT token if found, or null if not found
+     */
 
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");

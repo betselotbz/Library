@@ -39,6 +39,14 @@ public class UserService {
     }
 
     //Attempting to create a new user  by checking if user with same email address already exist in database
+    /*
+     * Create a new user.
+     *
+     * @param userObject The user object to be created
+     * @return The created user
+     * @throws InformationExistException if a user with the same email address already exists
+     * @throws IllegalArgumentException if the userObject is null
+     */
     public User createUser(User userObject) {
         if (userObject == null) {
             throw new IllegalArgumentException("User object cannot be null.");
@@ -56,6 +64,12 @@ public class UserService {
     }
 
     // Method to log in a user and return a JWT token
+    /*
+     * Log in a user and return a JWT token.
+     *
+     * @param loginRequest The login request containing the user's email address and password
+     * @return Optional containing the JWT token if login is successful, empty otherwise
+     */
     public Optional<String> loginUser(LoginRequest loginRequest) {
         // Create an authentication token with the provided email and password
         UsernamePasswordAuthenticationToken authenticationToken = new
@@ -74,8 +88,12 @@ public class UserService {
             return Optional.empty();
         }
     }
-    //Bearer Token
-//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoZWxlbkBnbWFpbC5jb20iLCJpYXQiOjE2OTUyODY1OTUsImV4cCI6MTY5NTI5Mzg5NX0.cX89LzTxuMRXgYi2t5FL73sO2naBOAfo72Vz44JiGO8
+    /*
+     * Find a user by their email address.
+     *
+     * @param emailAddress The email address of the user to find
+     * @return The user with the specified email address, or null if not found
+     */
     public User findUserByEmailAddress(String emailAddress) {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
