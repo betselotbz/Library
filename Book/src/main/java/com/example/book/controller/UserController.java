@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/auth/users") // http://localhost:9092/auth/users/
+@RequestMapping(path = "/auth/users") // http://localhost:9094/auth/users/
 public class UserController {
 
     private UserService userService;
@@ -30,7 +30,7 @@ public class UserController {
     public User createUser(@RequestBody User userObject) {
         return userService.createUser(userObject);
     }
-    @PostMapping(path = "/login/") // http://localhost:9092/auth/users/login/
+    @PostMapping(path = "/login/") // http://localhost:9094/auth/users/login/
     public ResponseEntity<LoginResponse> loginUser(@RequestBody LoginRequest loginRequest) {
         Optional<String> jwtToken = userService.loginUser(loginRequest);
         if (jwtToken.isPresent()) {

@@ -5,25 +5,29 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 
 public class MyUserDetails implements UserDetails {
+    private final User user;
+
     public MyUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return new HashSet<>();
     }
     // Returns the user's password.
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
     // Returns the user's username
     @Override
     public String getUsername() {
-        return null;
+        return user.getEmailAddress();
     }
     //Shows if user's account has expired
     @Override
