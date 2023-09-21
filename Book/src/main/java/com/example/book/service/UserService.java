@@ -38,8 +38,11 @@ public class UserService {
         this.authenticationManager = authenticationManager;
     }
 
-
+    //Attempting to create a new user  by checking if user with same email address already exist in database
     public User createUser(User userObject) {
+        if (userObject == null) {
+            throw new IllegalArgumentException("User object cannot be null.");
+        }
         // Check if a user with the same email address already exists
         if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
             // Encode the user's password for security
@@ -48,9 +51,10 @@ public class UserService {
             return userRepository.save(userObject);
         } else {
             // Throw an exception if the email address is already in use
-            throw new InformationExistException("user with email address " + userObject.getEmailAddress() + " already exists");
+            throw new InformationExistException("User with email address " + userObject.getEmailAddress() + " already exists");
         }
     }
+
     // Method to log in a user and return a JWT token
     public Optional<String> loginUser(LoginRequest loginRequest) {
         // Create an authentication token with the provided email and password
@@ -70,7 +74,8 @@ public class UserService {
             return Optional.empty();
         }
     }
-
+    //Bearer Token
+//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoZWxlbkBnbWFpbC5jb20iLCJpYXQiOjE2OTUyODY1OTUsImV4cCI6MTY5NTI5Mzg5NX0.cX89LzTxuMRXgYi2t5FL73sO2naBOAfo72Vz44JiGO8
     public User findUserByEmailAddress(String emailAddress) {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
