@@ -25,7 +25,7 @@ public class UserController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
+    //Add PostMapping
     @PostMapping(path = "/register/") // http://localhost:9094/auth/users/register/
     public User createUser(@RequestBody User userObject) {
         return userService.createUser(userObject);
@@ -38,5 +38,6 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Authentication failed"));
         }
+
     }
 }
