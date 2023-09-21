@@ -4,15 +4,15 @@ import com.example.book.exception.InformationExistException;
 import com.example.book.exception.InformationNotFoundException;
 import com.example.book.model.Book;
 import com.example.book.model.Genre;
-import com.example.book.model.User;
 import com.example.book.repository.BookRepository;
 import com.example.book.repository.GenreRepository;
 import com.example.book.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -54,30 +54,7 @@ public class GenreService {
      If not, it creates and saves the new genre to the database */
 
 
-    public Genre updateGenre(Long genreId, Genre genreObject) {
-        System.out.print("service calling updateGenre ==> ");
-        Optional<Genre> genreOptional = genreRepository.findById(genreId);
 
-        if (genreOptional.isPresent()) {
-            Genre existingGenre = genreOptional.get();
-
-            if (genreObject.getName().equals(existingGenre.getName())) {
-                System.out.println("Same");
-                throw new InformationExistException("The genre name is already " + existingGenre.getName() + " and description is already " + existingGenre.getDescription());
-            } else {
-                // Update the existing genre
-                existingGenre.setName(genreObject.getName());
-                existingGenre.setDescription(genreObject.getDescription());
-
-                // Save the updated genre back to the repository
-                genreRepository.save(existingGenre);
-
-                return existingGenre; // Return the updated genre
-            }
-        } else {
-            throw new InformationNotFoundException("genre with id " + genreId + " not found");
-        }
-    }
 
     public List<Genre> genres() {
         List<Genre> genreList = genreRepository.findAll();
@@ -186,8 +163,8 @@ public class GenreService {
             throw new InformationNotFoundException("Genre with ID " + genreId + " not found");
         }
     }
-
-    public Book updateGenreBook(Long genreId, Long bookId, Book bookObject) {
+//Update properties of an existing Genre object based on the provided genreId
+    public Book updateGenreBook(Long genreId, Book bookObject) {
         System.out.println("service calling updateGenreBook ==>");
         Optional<Genre> genre = genreRepository.findById(genreId);
         if (genre.isPresent()) {
@@ -204,6 +181,26 @@ public class GenreService {
         }
         return null;
     }
+
+    public Genre updateGenre(@PathVariable(value = "genreId") Long genreId, @RequestBody Genre genreObject) {
+        System.out.println("Calling updateGenre ==>");
+        Optional<Genre> genre = genreRepository.findById(genreId);
+        if (genre.isPresent()) {
+            if (genreObject.getName().equals(genre.get().getName())) {
+                System.out.println("Same");
+                throw new InformationExistException("Genre " + genre.get().getName() + " is already exists");
+            } else {
+                Genre updateGenre = genreRepository.findById(genreId).get();
+                updateGenre.setName(genreObject.getName());
+                updateGenre.setDescription(genreObject.getDescription());
+                // Add any other properties you want to update
+                return genreRepository.save(updateGenre);
+            }
+        } else {
+            throw new InformationNotFoundException("Genre with id " + genreId + " not found");
+        }
+    }
+
     public Optional<Book> deleteGenreBook(Long genreId, Long bookId) {
         Optional<Genre> genreOptional = genreRepository.findById(genreId);
         try {
@@ -216,10 +213,6 @@ public class GenreService {
             throw new InformationNotFoundException("Genre or book not found.");
         }
     }
-
-
-
-
     public Optional<Genre> getGenre(Long genreId) {
         return null;
     }
