@@ -22,7 +22,6 @@ public class SecurityConfiguration {
     public JwtRequestFilter authJwtRequestFilter() {
         return new JwtRequestFilter();
     }
-
     @Bean //to use the below functionality we need to convert it to bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { //SecurityFilterChain comes from import not created by us
         http.authorizeRequests().antMatchers("/auth/users", "/auth/users/login/", "/auth/users/register/").permitAll()
