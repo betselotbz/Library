@@ -20,7 +20,7 @@ The project followed a structured approach:
 6. **Documentation**: Properly documented code with doc strings and inline comments.
 
 ## Entity Relationship Diagram (ERD)
-![ERD Diagram](file:///Users/betselotbezabeh/Desktop/interapt-projects/Library/Library.png)
+![ERD Diagram](Library.png)
 
 ## Unsolved Problems
 Although the project is fully equipped with the essential backend components for seamless library access and management, it currently lacks specific CRUD (Create, Read, Update, Delete) operations tailored to user-based access. Instead, the CRUD operations are implemented with a focus on genres and books.
