@@ -19,6 +19,9 @@ The project followed a structured approach:
 5. **Exception Handling**: Implemented exception handling to provide meaningful error messages to users.
 6. **Documentation**: Properly documented code with doc strings and inline comments.
 
+## Entity Relationship Diagram (ERD)
+![ERD Diagram](file:///Users/betselotbezabeh/Desktop/interapt-projects/Library/Library.png)
+
 ## Unsolved Problems
 Although the project is fully equipped with the essential backend components for seamless library access and management, it currently lacks specific CRUD (Create, Read, Update, Delete) operations tailored to user-based access. Instead, the CRUD operations are implemented with a focus on genres and books.
 
@@ -71,17 +74,20 @@ USER STORIES:
 
     - **Why:** This allows me to maintain the system and its content.
 
+   ### Key Achievements:
+1. **Database Models:** Defined robust models for User, Genre, and Book with appropriate relationships.
+2. **Authentication:** Implemented secure authentication using Spring Security and JWT tokens.
+3. **Controller-Service Pattern:** Organized the application into controllers and services for better code organization.
+4. **RESTful Endpoints:** Created CRUD endpoints for genres and books, promoting interoperability.
+5. **Exception Handling:** Ensured a smooth user experience by implementing comprehensive exception handling.
+6. **Documentation:** Maintained code documentation with doc strings and inline comments for future reference.
 
+### Future Considerations:
+While the project currently focuses on genres and books, future enhancements could include:
+- Expanding reading list functionality with features like favorites, reviews, and ratings.
+- Implementing advanced search and filtering options for books.
+- Enhancing security with features like email confirmation and account lockout.
+- Improving scalability through pagination and sorting of book lists.
 
-## Entity Relationship Diagram (ERD)
-[[Link to ERD Diagram](https://lucid.app/lucidchart/f0494475-7293-479d-8c75-4cf275723c19/edit?viewport_loc=-795%2C-159%2C1451%2C737%2C0_0&invitationId=inv_f0f8dee4-abbd-45ad-bab8-b0e7cd3c1480)]
-
-## Project Planning
-[[Link to GitHub Project Board](https://github.com/betselotbz/Library.git)]
-
-## Installation Instructions
-1. Spring Boot: Make sure you have Spring Boot installed. If not, download it from Spring Boot.
-2. Dependencies: Ensure you have the necessary dependencies added to your pom.xml file:
-3. Build: Build your Spring Boot API library. Maven will automatically handle the dependency downloads during the build process.
-
+Overall, this project lays a strong foundation for a library management system and provides a solid base for future feature additions and improvements.
 
